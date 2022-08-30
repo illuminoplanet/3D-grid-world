@@ -2,9 +2,10 @@ export class EventHandler {
     contructor(data_buffer) {
         this.data_buffer = data_buffer
     }
-    handle(event, data) {
-        const url = `http://grid-world-d-uyiya.run.goorm.io/{event}`
-        const request = create_request(data)
+    handle(event) {
+        const url = `http://localhost/${event}`
+        const data = [0, 0, 0]
+        const request = this.create_request(data)
         
         fetch(url, request)
         .then((res) => { return res.json() })
