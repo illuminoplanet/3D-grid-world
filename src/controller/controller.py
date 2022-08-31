@@ -1,5 +1,4 @@
-from flask import Flask, url_for, render_template
-import os
+from flask import Flask, request, render_template
 
 
 class Controller:
@@ -16,5 +15,10 @@ class Controller:
         @app.route("/")
         def index():
             return render_template("index.html")
+
+        @app.route("/reshape_environment", endpoint="reshape_environment", methods=["POST"])
+        def reshape_environment():
+            shape = request.json["data"]
+            return { "reshape_environment" : [0, 0, 0]}
 
         return app 

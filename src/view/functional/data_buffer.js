@@ -3,6 +3,8 @@ export class DataBuffer {
         this.buffer = {}
     }
     append(json) {
+        console.log(json)
+
         const key = Object.keys(json)[0]
         const data = json[key]
 
