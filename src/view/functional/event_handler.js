@@ -4,7 +4,7 @@ export class EventHandler {
     }
     handle(event) {
         const url = `http://d-grid-world-hxtn.run.goorm.io/${event}`
-        const data = [0, 0, 0]
+        const data = this.get_data(event)
         const request = this.create_request(data)
         
         fetch(url, request)
@@ -12,6 +12,14 @@ export class EventHandler {
         .then((json) => {
             this.data_buffer.append(json)
         })
+    }
+    get_data(event) {
+        if (event == "reshape_environment") {
+            return [3, 3, 3]
+        }
+        else if (event == "change_algorithm") {
+            return "policy_iteration"
+        }
     }
     create_request(data) {
         const request = {
