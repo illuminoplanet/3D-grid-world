@@ -3,14 +3,12 @@ export class DataBuffer {
         this.buffer = {}
     }
     append(json) {
-        console.log(json)
-
         const key = Object.keys(json)[0]
         const data = json[key]
 
         if (!(key in this.buffer)) {
             this.buffer[key] = []
         }
-        this.buffer[key].append(data)
+        this.buffer[key].push(data)
     }
 }
