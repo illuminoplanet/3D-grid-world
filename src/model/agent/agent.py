@@ -1,4 +1,4 @@
-from algorithm.policy_iteration import PolicyIteration
+from .algorithm.policy_iteration import PolicyIteration
 
 
 class Agent:

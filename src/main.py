@@ -6,4 +6,4 @@ if __name__ == "__main__":
     model = Model()
     controller = Controller(model)
     
-    controller.run(debug=True)
+    controller.run(host="localhost", debug=True)

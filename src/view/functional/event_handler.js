@@ -3,7 +3,7 @@ export class EventHandler {
         this.data_buffer = data_buffer
     }
     handle(event) {
-        const url = `http://d-grid-world-hxtn.run.goorm.io/${event}`
+        const url = `http://localhost:5000/${event}`
         const data = this.get_data(event)
         const request = this.create_request(data)
         

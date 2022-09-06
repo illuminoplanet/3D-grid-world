@@ -35,6 +35,8 @@ class Controller:
             #info = self._interconvert_array_list(info)
             
             return { "change_algorithm" : info}
+
+        return app
         
     def _interconvert_array_list(data):
         return data

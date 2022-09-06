@@ -1,5 +1,5 @@
-from env import GridWorldEnv
-from agent import Agent
+from .env import GridWorldEnv
+from .agent import Agent
 
 
 class Model:
