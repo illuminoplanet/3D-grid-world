@@ -10,7 +10,7 @@ export class EventHandler {
         fetch(url, request)
         .then((res) => { return res.json() })
         .then((json) => {
-            this.data_buffer.append(json)
+            this.data_buffer.push(json)
         })
     }
     get_data(event) {
