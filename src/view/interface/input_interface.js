@@ -1,20 +1,17 @@
+import { Sidebar } from "./component/sidebar.js"
 import { Button } from "./component/button.js"
 
 
 export class InputInterface {
-    constructor(event_handler) {
-        this.sidebar = document.createElement("nav", { className: "sidebar" })
-        document.body.appendChild(this.sidebar)
-        
+    constructor() {
         this.components = [
-            new Button("reshape_environment", event_handler), 
-            new Button("change_algorithm", event_handler), 
-            new Button("toggle_run", event_handler), 
-            new Button("reset_environment", event_handler), 
-            new Button("toggle_visualization", event_handler)
+            new Sidebar([
+                new Button("reshape_environment",this.event_queue), 
+                new Button("change_algorithm", this.event_queue), 
+                new Button("toggle_run", this.event_queue), 
+                new Button("reset_environment", this.event_queue), 
+                new Button("toggle_visualization", this.event_queue)
+            ])
         ]
-        for (let button of this.components) {
-            this.sidebar.appendChild(button)
-        }
     }
 }
