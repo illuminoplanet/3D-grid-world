@@ -2,23 +2,24 @@ import * as THREE from "https://cdn.skypack.dev/three@0.144.0"
 
 
 export class Environment {
-	constructor(data_buffer) {
-		this.data_buffer = data_buffer
+	constructor(data_storage) {
+		this.data_storage = data_storage
         this.objects = []
 
         this.geometry = new THREE.BoxGeometry(1, 1, 1)
-        this.material = new THREE.MeshBasicMaterial({ color: 0xffff00 })
+        this.material = new THREE.MeshLambertMaterial({ color: 0xffff00 })
 	}
     update(scene) {
-        const shape = this.data_buffer.pop("reshape_environment")
+        if (!this.data_storage.flag_changed["reshape_environment"]) {
+            return 
+        }
+
+        const shape = this.data_storage.get("reshape_environment")["env_shape"][0]
         for (let x = 0; x < shape[0]; x++) {
             for (let y = 0; y < shape[1]; y++) {
                 for (let z = 0; z < shape[2]; z++) {
                     const mesh = new THREE.Mesh(this.geometry, this.material)
-                    mesh.position.x = x
-                    mesh.position.y = y
-                    mesh.position.z = z
-
+                    mesh.position.set(x, y, z) 
                     scene.add(mesh)
                     this.objects.push(mesh)
                 }

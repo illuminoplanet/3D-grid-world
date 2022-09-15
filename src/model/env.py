@@ -37,6 +37,7 @@ class GridWorldEnv(gym.Env):
     
     def get_information(self):
         info = {
+            "env_shape" : self.shape.tolist(),
             "agent_pos" : self.agent_pos.tolist(),
             "target_pos" : self.target_pos.tolist()
         }
