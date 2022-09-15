@@ -1,6 +1,6 @@
 export class EventHandler {
-    constructor(data_buffer) {
-        this.data_buffer = data_buffer
+    constructor(data_storage) {
+        this.data_storage = data_storage
     }
     handle(event) {
         const url = `http://localhost:5000/${event}`
@@ -10,12 +10,12 @@ export class EventHandler {
         fetch(url, request)
         .then((res) => { return res.json() })
         .then((json) => {
-            this.data_buffer.push(json)
+            this.data_storage.set(json)
         })
     }
     get_data(event) {
         if (event == "reshape_environment") {
-            return [3, 3, 3]
+            return [3, 5, 3]
         }
         else if (event == "change_algorithm") {
             return "policy_iteration"
