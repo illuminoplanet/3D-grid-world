@@ -7,7 +7,7 @@ export class Environment {
         this.objects = []
 
         this.geometry = new THREE.BoxGeometry(1, 1, 1)
-        this.material = new THREE.MeshLambertMaterial({ color: 0xffff00 })
+        this.material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF, wireframe: true })
 	}
     update(scene) {
         if (!this.data_storage.flag_changed["reshape_environment"]) {

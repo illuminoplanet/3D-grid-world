@@ -4,14 +4,18 @@ import { Environment } from "./component/environment.js"
 
 export class OutputInterface {
     constructor(data_storage) {
+        const [w, h] = [window.innerWidth, window.innerHeight]
+        const zoom = 160
+
         this.data_storage = data_storage
         this.env = new Environment(this.data_storage)
          
         // Scene
         this.scene = new THREE.Scene()
+        this.scene.background = new THREE.Color(0xFFFFFF)
 
         // Camera
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+        this.camera = new THREE.OrthographicCamera(-w / zoom, h / zoom, w / zoom, -h / zoom, 1, 1000)
         this.camera.position.set(10, 10, 10)
         this.camera.lookAt(0, 0, 0)
 
@@ -21,8 +25,9 @@ export class OutputInterface {
         document.body.appendChild(this.renderer.domElement)
        
         // Light
-        this.light = new THREE.HemisphereLight(0x404040, 0xFFFFFF, 0.5)
-        this.scene.add(light)
+        this.light = new THREE.PointLight(0xFFFFFF, 0.5)
+        this.light.position.set(0, 10, 0)
+        this.scene.add(this.light)
 
         this.render()
     }
