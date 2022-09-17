@@ -20,6 +20,9 @@ export class EventHandler {
         else if (event == "change_algorithm") {
             return "policy_iteration"
         }
+        else if (event == "toggle_run") {
+            return !this.data_storage.get("env_run")
+        }
     }
     create_request(data) {
         const request = {

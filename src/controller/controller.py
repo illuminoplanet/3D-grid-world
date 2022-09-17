@@ -19,22 +19,21 @@ class Controller:
         @app.route("/reshape_environment", endpoint="reshape_environment", methods=["POST"])
         def reshape_environment():
             shape = request.json["data"]
-            #shape = self._interconvert_array_list(shape)
-            
             info = self.model.reshape_environment(shape)
-            #info = self._interconvert_array_list(info)
             
             return info
         
         @app.route("/change_algorithm", endpoint="change_algorithm", methods=["POST"])
-        def reshape_environment():
+        def change_algorithm():
             algorithm = request.json["data"]
-            #shape = self._interconvert_array_list(shape)
-            
             info = self.model.change_algorithm(algorithm)
-            #info = self._interconvert_array_list(info)
             
             return info
+        
+        @app.route("/toggle_run", endpoint="toggle_run", methods=["POST"])
+        def toggle_run():
+            env_run = request.json["data"]
+            return { "env_run" : env_run }
 
         return app
         
