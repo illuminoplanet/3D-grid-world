@@ -15,6 +15,11 @@ export class Grid {
             return 
         }
         
+        for (const object of this.objects) {
+            this.scene.remove(object)
+        }
+        this.object = []
+        
         const shape = this.data_storage.get("env_shape")
         for (let x = 0; x < shape[0]; x++) {
             for (let y = 0; y < shape[1]; y++) {
