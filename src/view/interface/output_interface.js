@@ -1,14 +1,12 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.144.0"
-import { Environment } from "./component/environment.js"
+import { Grid } from "./output_component/grid.js"
+import { Agent } from "./output_component/agent.js"
 
 
 export class OutputInterface {
     constructor(data_storage) {
         const [w, h] = [window.innerWidth, window.innerHeight]
         const zoom = 160
-
-        this.data_storage = data_storage
-        this.env = new Environment(this.data_storage)
          
         // Scene
         this.scene = new THREE.Scene()
@@ -16,7 +14,7 @@ export class OutputInterface {
 
         // Camera
         this.camera = new THREE.OrthographicCamera(-w / zoom, h / zoom, w / zoom, -h / zoom, 1, 1000)
-        this.camera.position.set(10, 10, 10)
+        this.camera.position.set(10, -10, 10)
         this.camera.lookAt(0, 0, 0)
 
         // Renderer
@@ -28,11 +26,16 @@ export class OutputInterface {
         this.light = new THREE.PointLight(0xFFFFFF, 0.5)
         this.light.position.set(0, 10, 0)
         this.scene.add(this.light)
+        
+        this.data_storage = data_storage
+        this.grid = new Grid(this.scene, this.data_storage)
+        this.agent = new Agent(this.scene, this.data_storage)
 
         this.render()
     }
     update() {
-        this.env.update(this.scene)
+        this.grid.update(this.scene)
+        this.agent.update(this.scene)
     }
     render() {
         if (this.data_storage.num_changed) {

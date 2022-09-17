@@ -9,7 +9,7 @@ class Model:
     
     def reshape_environment(self, shape):
         del self.env 
-        self.env = GridWorldEnv(shape)
+        self.env = GridWorldEnv(*shape)
         
         return self.env.get_information()
     

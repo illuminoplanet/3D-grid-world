@@ -1,5 +1,5 @@
-import { Sidebar } from "./component/sidebar.js"
-import { Button } from "./component/button.js"
+import { Sidebar } from "./input_component/sidebar.js"
+import { Button } from "./input_component/button.js"
 
 
 export class InputInterface {

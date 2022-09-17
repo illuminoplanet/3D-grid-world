@@ -5,16 +5,18 @@ export class DataStorage {
         this.flag_changed = {}
     }
     set(json) {
-        const key = Object.keys(json)[0]
-        const data = json[key]
+        const keys = Object.keys(json)
+        for (const key of keys) {
+            const data = json[key]
 
-        if (!(key in this.storage)) {
-            this.flag_changed[key] = false
+            if (!(key in this.storage)) {
+                this.flag_changed[key] = false
+            }
+
+            this.storage[key] = data
+            this.num_changed += !this.flag_changed[key]
+            this.flag_changed[key] = true
         }
-
-        this.storage[key] = data
-        this.num_changed += !this.flag_changed[key]
-        this.flag_changed[key] = true
     }
     get(key) {
         this.num_changed -= 1

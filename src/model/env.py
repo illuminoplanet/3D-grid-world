@@ -36,6 +36,7 @@ class GridWorldEnv(gym.Env):
         return model
     
     def get_information(self):
+        print(self.dim)
         info = {
             "env_shape" : self.shape.tolist(),
             "agent_pos" : self.agent_pos.tolist(),

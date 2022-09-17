@@ -3,7 +3,7 @@ export class EventHandler {
         this.data_storage = data_storage
     }
     handle(event) {
-        const url = `http://localhost:5000/${event}`
+        const url = `https://d-grid-world-qsdvn.run.goorm.io/${event}`
         const data = this.get_data(event)
         const request = this.create_request(data)
         

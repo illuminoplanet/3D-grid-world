@@ -24,7 +24,7 @@ class Controller:
             info = self.model.reshape_environment(shape)
             #info = self._interconvert_array_list(info)
             
-            return { "reshape_environment" : info}
+            return info
         
         @app.route("/change_algorithm", endpoint="change_algorithm", methods=["POST"])
         def reshape_environment():
@@ -34,7 +34,7 @@ class Controller:
             info = self.model.change_algorithm(algorithm)
             #info = self._interconvert_array_list(info)
             
-            return { "change_algorithm" : info}
+            return info
 
         return app
         
