@@ -15,4 +15,14 @@ class Agent:
     def change_algorithm(self, algorithm):
         del self.algorithm
         self.algorithm = self.algorithm_map[algorithm](self.obs_space, self.action_space, self.model)
+
+    def choose_action(self):
+        return self.algorithm.choose_action()
         
+    def get_policy_value(self):
+        return self.algorithm.get_policy_value()
+
+    def step(self):
+        self.algorithm.plan()
+
+    

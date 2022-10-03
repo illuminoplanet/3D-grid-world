@@ -1,18 +1,11 @@
 export class DataStorage {
     constructor() {
-        this.storage = { 
-            "env_shape" : [3, 4, 5], 
-            "agent_pos" : [0, 0, 0]
-        }
+        this.storage = {}
         this.num_changed = Object.keys(this.storage).length
-        this.flag_changed = {
-            "env_shape" : true, 
-            "agent_pos" : true
-        }
+        this.flag_changed = {}
     }
     set(json) {
-        const keys = Object.keys(json)
-        for (const key of keys) {
+        for (const key of Object.keys(json)) {
             const data = json[key]
 
             this.storage[key] = data

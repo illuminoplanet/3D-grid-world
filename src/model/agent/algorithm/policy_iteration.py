@@ -55,3 +55,11 @@ class PolicyIteration:
             self.policy[state] = greedy_action / np.sum(greedy_action)
 
             it.iternext()
+
+    def get_policy_value(self):
+        policy_value = {
+            "policy" : self.policy.tolist(),
+            "state_value" : self.state_value.tolist(),
+            "action_value" : None
+        }
+        return policy_value
