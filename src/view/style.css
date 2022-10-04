@@ -20,10 +20,11 @@ body {
 	align-content: center;
 	
     z-index: 100;
-    transition: transform 0.3s ease-out;
+    transition: transform 0.4s cubic-bezier(0.86, 0.01, 0.77, 0.78);
 	transform: translateX(-100%);
 }
 .sidebar[open=true] {
+    transition: transform 0.8s cubic-bezier(0.86, 0.01, 0.77, 0.78);;
     transform: translateX(0%);
 }
 .sidebar button {

@@ -1,6 +1,7 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.144.0"
 import { Grid } from "./output_component/grid.js"
 import { Agent } from "./output_component/agent.js"
+import { Plane } from "./output_component/plane.js"
 
 
 export class OutputInterface {
@@ -10,7 +11,7 @@ export class OutputInterface {
          
         // Scene
         this.scene = new THREE.Scene()
-        this.scene.background = new THREE.Color("rgb(248, 248, 248)")
+        this.scene.background = 0xF8F8F8
 
         // Camera
         this.camera = new THREE.OrthographicCamera(-w / zoom, w / zoom, h / zoom, -h / zoom, 1, 1000)
@@ -19,6 +20,7 @@ export class OutputInterface {
 
         // Renderer
         this.renderer = new THREE.WebGLRenderer( { antialias: true })
+        this.renderer.shadowMap.enabled = true
         this.renderer.setSize(window.innerWidth, window.innerHeight)
         document.body.appendChild(this.renderer.domElement)
        
@@ -26,8 +28,8 @@ export class OutputInterface {
         const key_light = new THREE.DirectionalLight(0xffffff, 1)
         key_light.position.set(0, 100, 0)
         key_light.castShadow = true
-        key_light.shadowDarkness = 0.1
-        this.scene.add(key_light);
+        key_light.shadowDarkness = 1
+        this.scene.add(key_light)
 
         const fill_light = new THREE.DirectionalLight(0xffffff, 0.9)
         fill_light.position.set(100, 50, 80)
@@ -40,6 +42,7 @@ export class OutputInterface {
         this.data_storage = data_storage
         this.grid = new Grid(this.scene, this.data_storage)
         this.agent = new Agent(this.scene, this.data_storage)
+        this.plane = new Plane(this.scene)
 
         this.render()
     }
