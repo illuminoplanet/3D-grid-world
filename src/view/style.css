@@ -2,39 +2,48 @@ body {
 	background-color: white;
 }
 
-.button {
-    width: 64px;
-    height: 64px;
-}
-
 .sidebar {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 400px;
+    width: 320px;
     height: 100%;
 	
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
+    justify-content: center;
 	align-content: center;
 	
     z-index: 100;
-    transition: transform 0.4s cubic-bezier(0.86, 0.01, 0.77, 0.78);
+    transition: transform 0.15s linear;
 	transform: translateX(-100%);
 }
 .sidebar[open=true] {
-    transition: transform 0.8s cubic-bezier(0.86, 0.01, 0.77, 0.78);;
+    transition: transform 0.5s cubic-bezier(0,1,0,1);
     transform: translateX(0%);
 }
 .sidebar button {
+    margin: 32px;
     width: 64px;
     height: 64px;
-    background-color: transparent;
-    
-	margin: auto;
-    border-radius: 50%;
-    border-style: solid;
+
+    border: none;
+}
+.sidebar button:nth-of-type(1) {
+    background: url("./resources/reshape_environment.svg") center;
+}
+.sidebar button:nth-of-type(2) {
+    background: url("./resources/change_algorithm.svg") center;
+}
+.sidebar button:nth-of-type(3) {
+    background: url("./resources/resume_run.svg") center;
+}
+.sidebar button:nth-of-type(4) {
+    background: url("./resources/reset_environment.svg") center;
+}
+.sidebar button:nth-of-type(5) {
+    background: url("./resources/activate_visualization.svg") center;
 }
 .sidebar button:hover{
 	box-shadow:

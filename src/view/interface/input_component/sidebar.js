@@ -16,8 +16,6 @@ export class Sidebar {
     }
     mouse_move(event) {
         event = event || window.event
-        for (let comp of this.components) {
-			comp.setAttribute("open", event.pageX <= 400)
-		}
+		this.sidebar.setAttribute("open", event.pageX <= 400)
 	}
 }
