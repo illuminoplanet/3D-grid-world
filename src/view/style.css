@@ -24,30 +24,147 @@ body {
     transform: translateX(0%);
 }
 .sidebar button {
+    position: relative;
     margin: 32px;
     width: 64px;
     height: 64px;
-
+    
+    border-radius: 50%;
     border: none;
 }
+
 .sidebar button:nth-of-type(1) {
-    background: url("./resources/reshape_environment.svg") center;
+    background: url("./resources/reshape_environment.svg") 
+}
+.sidebar button:nth-of-type(1):before {
+    border-radius: 50%;
+    z-index: -10;
+    content: ""; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(90deg, rgba(255,210,110,1) 0%, rgba(255,0,168,1) 100%);
+    opacity: 0%;
+    transition: opacity 0.15s ease-in;
+}
+.sidebar button:nth-of-type(1):hover:before {
+    content: ""; 
+    opacity: 50%;
+    transition: opacity 0.2s ease-in;
+}
+.sidebar button:nth-of-type(1):active:before {
+    content: ""; 
+    opacity: 100%;
+    transition: opacity 0s ease-in;
 }
 .sidebar button:nth-of-type(2) {
     background: url("./resources/change_algorithm.svg") center;
 }
+.sidebar button:nth-of-type(2):before {
+    border-radius: 50%;
+    z-index: -10;
+    content: ""; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(90deg, rgba(255,162,0,1) 0%, rgba(254,255,110,1) 100%);
+    opacity: 0%;
+    transition: opacity 0.1s ease-in;
+}
+.sidebar button:nth-of-type(2):hover:before {
+    content: ""; 
+    opacity: 50%;
+    transition: opacity 0.2s ease-in;
+}
+.sidebar button:nth-of-type(2):active:before {
+    content: ""; 
+    opacity: 100%;
+    transition: opacity 0s ease-in;
+}
 .sidebar button:nth-of-type(3) {
     background: url("./resources/resume_run.svg") center;
+}
+.sidebar button:nth-of-type(3):before {
+    border-radius: 50%;
+    z-index: -10;
+    content: ""; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(90deg, rgba(108,255,0,1) 0%, rgba(110,240,255,1) 100%);
+    opacity: 0%;
+    transition: opacity 0.1s ease-in;
+}
+.sidebar button:nth-of-type(3):hover:before {
+    content: ""; 
+    opacity: 50%;
+    transition: opacity 0.2s ease-in;
+}
+.sidebar button:nth-of-type(3):active:before {
+    content: ""; 
+    opacity: 100%;
+    transition: opacity 0s ease-in;
 }
 .sidebar button:nth-of-type(4) {
     background: url("./resources/reset_environment.svg") center;
 }
+.sidebar button:nth-of-type(4):before {
+    border-radius: 50%;
+    z-index: -10;
+    content: ""; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(90deg, rgba(0,255,218,1) 0%, rgba(110,140,255,1) 100%);
+    opacity: 0%;
+    transition: opacity 0.1s ease-in;
+}
+.sidebar button:nth-of-type(4):hover:before {
+    content: ""; 
+    opacity: 50%;
+    transition: opacity 0.2s ease-in;
+}
+.sidebar button:nth-of-type(4):active:before {
+    content: ""; 
+    opacity: 100%;
+    transition: opacity 0s ease-in;
+}
 .sidebar button:nth-of-type(5) {
     background: url("./resources/activate_visualization.svg") center;
 }
-.sidebar button:hover{
-	box-shadow:
-        0 0 6px 3px #fff,  /* inner white */
-        0 0 10px 6px #f0f, /* middle magenta */
-        0 0 14px 9px #0ff; /* outer cyan */
+.sidebar button:nth-of-type(5):before {
+    border-radius: 50%;
+    z-index: -10;
+    content: ""; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(90deg, rgba(98,0,255,1) 0%, rgba(241,110,255,1) 100%);
+    opacity: 0%;
+    transition: opacity 0.1s ease-in;
+}
+.sidebar button:nth-of-type(5):hover:before {
+    content: ""; 
+    opacity: 50%;
+    transition: opacity 0.2s ease-in;
+}
+.sidebar button:nth-of-type(5):active:before {
+    content: ""; 
+    opacity: 100%;
+    transition: opacity 0s ease-in;
 }
