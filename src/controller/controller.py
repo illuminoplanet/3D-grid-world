@@ -38,11 +38,10 @@ class Controller:
             env_run = request.json["data"]
             return { "env_run" : env_run }
 
-        @app.route("/fetch_policy_value", endpoint="fetch_policy_value", methods=["POST"])
-        def fetch_policy_value():
-            stride = request.json["data"]
-            policy_value = self.model.step(stride)
-            return policy_value
+        @app.route("/run_episode", endpoint="run_episode", methods=["POST"])
+        def run_episode():
+            parameter = request.json["data"]
+            return self.model.step(**parameter)
 
         return app
         

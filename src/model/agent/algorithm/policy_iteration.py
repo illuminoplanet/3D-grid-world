@@ -2,7 +2,7 @@ import numpy as np
 
 
 class PolicyIteration:
-    def __init__(self, obs_space, action_space, model, gamma=1, k=10):
+    def __init__(self, obs_space, action_space, model, terminal_state, gamma=1, k=10):
         # observation space & action space
         self.obs_space = obs_space
         self.action_space = action_space
@@ -14,25 +14,37 @@ class PolicyIteration:
         # reward & transition function (model based)
         self.reward = model["reward"]  # R
         self.transition = model["transition"]  # P
+        self.terminal_state = tuple(terminal_state)
 
         # discount factor & number of iterations
         self.gamma = gamma
         self.k = k
 
-    def plan(self):
-        self.evaluate()
-        self.improve()
+    def get_policy(self):
+        return self.policy.tolist()
 
-    def evaluate(self):
+    def choose_action(self, obs):
+        return np.random.choice(self.action_space.n, p=self.policy[tuple(obs)])
+
+    def improve(self, _trajectory):
+        self._evaluate_policy()
+        self._improve_policy()
+
+        self.state_value *= 0
+
+    def _evaluate_policy(self):
         # repeat iteration k times 
         for _ in range(self.k):
             it = np.nditer(self.state_value, flags=["multi_index"], op_flags=["readwrite"])
             while not it.finished:
                 state = it.multi_index
+                if state == self.terminal_state:
+                    it.iternext()
+                    continue
 
                 # array of next states and rewards
                 state_primes = np.array([self.transition(state, action) for action in range(self.action_space.n)])
-                rewards = np.array([self.reward(state_prime) for state_prime in state_primes])
+                rewards = self.reward(np.array(state))
 
                 # update state value using Bellman Expectation Equation (in-place)
                 temp = rewards + self.gamma * self.state_value[tuple(state_primes.T)]
@@ -40,14 +52,17 @@ class PolicyIteration:
 
                 it.iternext()
 
-    def improve(self):
+    def _improve_policy(self):
         it = np.nditer(self.state_value, flags=["multi_index"], op_flags=["readwrite"])
         while not it.finished:
             state = it.multi_index
+            if state == self.terminal_state:
+                it.iternext()
+                continue
 
             # array of next states and rewards
             state_primes = np.array([self.transition(state, action) for action in range(self.action_space.n)])
-            rewards = np.array([self.reward(state_prime) for state_prime in state_primes])
+            rewards = self.reward(np.array(state))
 
             # update policy (greedy)
             temp = rewards + self.gamma * self.state_value[tuple(state_primes.T)]
@@ -56,10 +71,4 @@ class PolicyIteration:
 
             it.iternext()
 
-    def get_policy_value(self):
-        policy_value = {
-            "policy" : self.policy.tolist(),
-            "state_value" : self.state_value.tolist(),
-            "action_value" : None
-        }
-        return policy_value
+    

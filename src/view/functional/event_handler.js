@@ -11,7 +11,6 @@ export class EventHandler {
         .then((res) => { return res.json() })
         .then((json) => {
             this.data_storage.set(json)
-
             if (event == "initialize") {
                 this.initialized()
             }
@@ -21,7 +20,7 @@ export class EventHandler {
         if (event == "initialize") {
             return { "env_shape" : [2, 2, 2], "algorithm" : "policy_iteration" }
         }
-        else if (event == "reshape_env") {
+        else if (event == "reshape_environment") {
             return [3, 5, 3] // placeholder
         }
         else if (event == "change_algorithm") {
@@ -30,11 +29,14 @@ export class EventHandler {
         else if (event == "toggle_run") {
             return !this.data_storage.get("env_run")
         }
-        else if (event == "fetch_policy_value") {
-            const policy_value = this.data_storage.get("policy_value")
-            this.data_storage.set(policy_value)
-        
-            return 1
+        else if (event == "run_episode") {
+            const policy = this.data_storage.get("policy")
+            const action_history = this.data_storage.get("action_history")
+            
+            this.data_storage.set("policy", policy)
+            this.data_storage.set("action_history", action_history)
+
+            return { "episode_stride" : 1, "max_episode_length" : 50 }
         }
     }
     create_request(event) {

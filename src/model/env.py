@@ -15,9 +15,10 @@ class GridWorldEnv(gym.Env):
         self.agent_pos = np.zeros(self.dim, dtype=int)
         self.target_pos = self._set_target_pos()
 
-    def reset(self):
+    def reset(self, hard_reset=False):
         self.agent_pos = np.zeros(self.dim, dtype=int)
-        self.target_pos = self._set_target_pos()
+        if hard_reset:
+            self.target_pos = self._set_target_pos()
         return self.agent_pos
 
     def step(self, action):
@@ -29,7 +30,7 @@ class GridWorldEnv(gym.Env):
         reward = -1 + done
         info = None
 
-        return observation, done, reward, info
+        return observation, reward, done, info
 
     def get_model(self):
         model = {"reward": self._get_reward, "transition": self._get_transtion}
@@ -47,7 +48,8 @@ class GridWorldEnv(gym.Env):
         prop = {
             "obs_space" : self.obs_space,
             "action_space" : self.action_space,
-            "model" : self.get_model()
+            "model" : self.get_model(), 
+            "terminal_state" : self.target_pos
         }
         return prop
 

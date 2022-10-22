@@ -6,7 +6,7 @@ export class Clock {
     }
     ring() {
         if (this.data_storage.get("env_run")) {
-            this.event_handler.handle("fetch_policy_value")
+            this.event_handler.handle("run_episode")
         }
     }
 }
