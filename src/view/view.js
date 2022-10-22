@@ -12,7 +12,7 @@ class View {
         this.event_handler.handle("initialize")
     }
     initialize() {
-        this.clock = new Clock(this.data_storage, this.event_handler, 2000)
+        this.clock = new Clock(this.data_storage, this.event_handler, 200)
 
         this.input_interface = new InputInterface(this.event_handler)
         this.output_interface = new OutputInterface(this.data_storage)

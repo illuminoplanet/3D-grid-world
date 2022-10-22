@@ -7,7 +7,7 @@ export class Agent {
 		this.data_storage = data_storage
         this.objects = []
 
-        this.geometry = new THREE.ConeGeometry(0.2, 0.5, 32 )
+        this.geometry = new THREE.ConeGeometry(0.2, 0.5, 32)
         this.material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF, wireframe: true })
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.scene.add(this.mesh)

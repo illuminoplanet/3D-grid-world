@@ -22,7 +22,7 @@ class GridWorldEnv(gym.Env):
         return self.agent_pos
 
     def step(self, action):
-        _displacement = self._action_to_displacement(action)
+        _displacement = self.action_to_displacement(action)
         self.agent_pos = np.clip(self.agent_pos + _displacement, 0, self.shape - 1)
 
         observation = self.agent_pos
@@ -53,7 +53,7 @@ class GridWorldEnv(gym.Env):
         }
         return prop
 
-    def _action_to_displacement(self, action):
+    def action_to_displacement(self, action):
         displacement = np.eye(self.dim, dtype=int)[action // 2] * (1 if action % 2 else -1)
         return displacement
 
@@ -69,6 +69,6 @@ class GridWorldEnv(gym.Env):
         return reward
 
     def _get_transtion(self, state, action):
-        _displacement = self._action_to_displacement(action)
+        _displacement = self.action_to_displacement(action)
         state_prime = np.clip(state + _displacement, 0, self.shape - 1)
         return state_prime

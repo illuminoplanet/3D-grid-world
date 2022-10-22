@@ -1,3 +1,5 @@
+import numpy as np
+
 from .env import GridWorldEnv
 from .agent import Agent
 
@@ -10,7 +12,8 @@ class Model:
 
         info = self.env.get_information()
         info["policy"] = self.agent.get_policy() 
-        info["action_history"] = None
+        info["action_history"] = []
+        info["old_action_history"] = []
         info["env_shape"] = env_shape
         info["algorithm"] = algorithm
         info["env_run"] = False
@@ -56,5 +59,6 @@ class Model:
 
     def _extract_action_history(self, trajectory):
         action_history = [trajectory[i] for i in range(1, len(trajectory), 3)]
+        action_history = list(map(lambda x : self.env.action_to_displacement(x).tolist(), action_history))
         return action_history
-        
+    
