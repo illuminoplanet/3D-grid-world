@@ -1,5 +1,3 @@
-import numpy as np
-
 from .env import GridWorldEnv
 from .agent import Agent
 
@@ -34,6 +32,14 @@ class Model:
         info = self.env.get_information()
         info["env_run"] = False
         
+        return info
+
+    def reset_environment(self, algorithm):
+        self.env.reset(hard_reset=True)
+        self.agent.change_algorithm(algorithm)
+        info = self.env.get_information()
+        info["env_run"] = False
+
         return info
 
     def step(self, episode_stride, max_episode_length):

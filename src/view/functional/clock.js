@@ -7,12 +7,14 @@ export class Clock {
         this.count = 0
     }
     tick() {
-        if (!this.data_storage.get("old_action_history").length) {
-            this.event_handler.handle("run_episode")
-        }
-        else if (this.data_storage.get("env_run"))
-        {
-            this.event_handler.handle("step_agent")
+        if (this.data_storage.get("env_run")) {
+            if (!this.data_storage.get("old_action_history").length) {
+                this.event_handler.handle("run_episode")
+            }
+            else
+            {
+                this.event_handler.handle("step_agent")
+            }
         }
     }
 }

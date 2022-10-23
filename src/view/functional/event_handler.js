@@ -27,9 +27,10 @@ export class EventHandler {
         if (event == "step_agent") {
             let old_action_history = this.data_storage.get("old_action_history")
             let agent_pos = this.data_storage.get("agent_pos") 
+            const env_shape = this.data_storage.get("env_shape") 
             const action_displacement = old_action_history.shift()
 
-            agent_pos = agent_pos.map((e, i) => e + action_displacement[i])
+            agent_pos = agent_pos.map((e, i) => Math.min(Math.max(0, e + action_displacement[i]), env_shape[i] - 1))
             
             this.data_storage.set({
                 "old_action_history" : old_action_history, 
@@ -42,6 +43,10 @@ export class EventHandler {
             return { "env_shape" : [2, 2, 2], "algorithm" : "policy_iteration" }
         }
         else if (event == "reshape_environment") {
+            this.data_storage.set({
+                "old_action_history" : [], 
+                "agent_pos" : [0, 0, 0]
+            })
             return [3, 5, 3] // placeholder
         }
         else if (event == "change_algorithm") {
@@ -49,6 +54,9 @@ export class EventHandler {
         }
         else if (event == "toggle_run") {
             return !this.data_storage.get("env_run")
+        }
+        else if (event == "reset_environment") {
+            return { "algorithm" : "policy_iteration" }
         }
         else if (event == "run_episode") {
             const old_policy = this.data_storage.get("policy")

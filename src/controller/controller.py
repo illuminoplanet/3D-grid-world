@@ -38,6 +38,12 @@ class Controller:
             env_run = request.json["data"]
             return { "env_run" : env_run }
 
+        @app.route("/reset_environment", endpoint="reset_environment", methods=["POST"])
+        def reset_environment():
+            algorithm = request.json["data"]
+            info = self.model.reset_environment()
+            return info
+
         @app.route("/run_episode", endpoint="run_episode", methods=["POST"])
         def run_episode():
             parameter = request.json["data"]
