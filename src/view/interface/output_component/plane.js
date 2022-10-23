@@ -8,7 +8,7 @@ export class Plane {
         this.material = new THREE.MeshPhongMaterial( { opacity : 0.5 })
         this.plane = new THREE.Mesh(this.geometry, this.material)
         this.plane.receiveShadow = true
-        this.plane.position.y = -1
+        this.plane.position.y = -2
         this.plane.rotation.x = -0.5 * Math.PI
         
         this.scene.add(this.plane)

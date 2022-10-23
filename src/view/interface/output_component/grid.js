@@ -25,7 +25,7 @@ export class Grid {
             for (let y = 0; y < shape[1]; y++) {
                 for (let z = 0; z < shape[2]; z++) {
                     const mesh = new THREE.Mesh(this.geometry, this.material)
-                    mesh.position.set(x, y + 1, z) 
+                    mesh.position.set(x, y, z) 
                     mesh.castShadow = true
                     this.scene.add(mesh)
                     this.objects.push(mesh)
