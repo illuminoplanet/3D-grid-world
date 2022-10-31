@@ -1,9 +1,9 @@
 export class Button {
 	constructor(type, event_handler) {
-		this.button = document.createElement("button")
-		this.button.onclick = () => event_handler.handle(type)
-		
-		document.body.appendChild(this.button)
-		return this.button
+		let $button = $("<button>", { "id" : type })
+		$button.css({ "background" : `url(view/resources/${type}.svg)` })
+		$button.click(() => event_handler.handle(type))
+
+		return $button
 	}
 }

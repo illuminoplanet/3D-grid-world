@@ -10,8 +10,8 @@ body {
     height: 100%;
 	
 	display: flex;
+    flex-wrap: wrap;
 	flex-direction: column;
-	flex-wrap: wrap;
     justify-content: center;
 	align-content: center;
 	
@@ -19,8 +19,8 @@ body {
     transition: transform 0.15s linear;
 	transform: translateX(-100%);
 }
-.sidebar[open=true] {
-    transition: transform 0.5s cubic-bezier(0,1,0,1);
+.sidebar[is_open=true] {
+    transition: transform 0.5s cubic-bezier(0, 1, 0, 1);
     transform: translateX(0%);
 }
 .sidebar button {
@@ -32,139 +32,75 @@ body {
     border-radius: 50%;
     border: none;
 }
+button::before {
+    content: ""; 
 
-.sidebar button:nth-of-type(1) {
-    background: url("./resources/reshape_environment.svg") 
-}
-.sidebar button:nth-of-type(1):before {
-    border-radius: 50%;
-    z-index: -10;
-    content: ""; 
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 64px;
+    height: 64px;
     transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(90deg, rgba(255,210,110,1) 0%, rgba(255,0,168,1) 100%);
-    opacity: 0%;
-    transition: opacity 0.15s ease-in;
-}
-.sidebar button:nth-of-type(1):hover:before {
-    content: ""; 
-    opacity: 50%;
-    transition: opacity 0.2s ease-in;
-}
-.sidebar button:nth-of-type(1):active:before {
-    content: ""; 
-    opacity: 100%;
-    transition: opacity 0s ease-in;
-}
-.sidebar button:nth-of-type(2) {
-    background: url("./resources/change_algorithm.svg") center;
-}
-.sidebar button:nth-of-type(2):before {
+
     border-radius: 50%;
     z-index: -10;
-    content: ""; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(90deg, rgba(255,162,0,1) 0%, rgba(254,255,110,1) 100%);
     opacity: 0%;
     transition: opacity 0.1s ease-in;
 }
-.sidebar button:nth-of-type(2):hover:before {
-    content: ""; 
+button:hover::before {
     opacity: 50%;
     transition: opacity 0.2s ease-in;
 }
-.sidebar button:nth-of-type(2):active:before {
-    content: ""; 
+button:active::before {
     opacity: 100%;
     transition: opacity 0s ease-in;
 }
-.sidebar button:nth-of-type(3) {
-    background: url("./resources/resume_run.svg") center;
-}
-.sidebar button:nth-of-type(3):before {
-    border-radius: 50%;
-    z-index: -10;
-    content: ""; 
+button::after {
     position: absolute;
-    top: 50%;
+    top: 104%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(90deg, rgba(108,255,0,1) 0%, rgba(110,240,255,1) 100%);
+    text-align: center;
+    transform: translateX(-50%);
+
+    z-index: 10;
     opacity: 0%;
     transition: opacity 0.1s ease-in;
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: large;
 }
-.sidebar button:nth-of-type(3):hover:before {
-    content: ""; 
-    opacity: 50%;
+button:hover::after {
+    opacity: 100%;
     transition: opacity 0.2s ease-in;
 }
-.sidebar button:nth-of-type(3):active:before {
-    content: ""; 
-    opacity: 100%;
-    transition: opacity 0s ease-in;
+#environment::before {
+    background: linear-gradient(90deg, rgba(255, 210, 110, 1) 0%, rgba(255, 0, 168, 1) 100%);
 }
-.sidebar button:nth-of-type(4) {
-    background: url("./resources/reset_environment.svg") center;
+#algorithm::before {
+    background: linear-gradient(90deg, rgba(255, 162, 0, 1) 0%, rgba(254, 255, 110, 1) 100%);
 }
-.sidebar button:nth-of-type(4):before {
-    border-radius: 50%;
-    z-index: -10;
-    content: ""; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(90deg, rgba(0,255,218,1) 0%, rgba(110,140,255,1) 100%);
-    opacity: 0%;
-    transition: opacity 0.1s ease-in;
+#play::before {
+    background: linear-gradient(90deg, rgba(108, 255, 0, 1) 0%, rgba(110, 240, 255, 1) 100%);
 }
-.sidebar button:nth-of-type(4):hover:before {
-    content: ""; 
-    opacity: 50%;
-    transition: opacity 0.2s ease-in;
+#reset::before {
+    background: linear-gradient(90deg, rgba(0, 255, 218, 1) 0%, rgba(110, 140, 255, 1) 100%);
 }
-.sidebar button:nth-of-type(4):active:before {
-    content: ""; 
-    opacity: 100%;
-    transition: opacity 0s ease-in;
+#policy::before {
+    background: linear-gradient(90deg, rgba(98, 0, 255, 1) 0%, rgba(241, 110, 255, 1) 100%);
 }
-.sidebar button:nth-of-type(5) {
-    background: url("./resources/activate_visualization.svg") center;
+#environment::after {
+    content : "Environment";
 }
-.sidebar button:nth-of-type(5):before {
-    border-radius: 50%;
-    z-index: -10;
-    content: ""; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(90deg, rgba(98,0,255,1) 0%, rgba(241,110,255,1) 100%);
-    opacity: 0%;
-    transition: opacity 0.1s ease-in;
+#algorithm::after {
+    content : "Algorithm";
 }
-.sidebar button:nth-of-type(5):hover:before {
-    content: ""; 
-    opacity: 50%;
-    transition: opacity 0.2s ease-in;
+#play::after {
+    content : "Play";
 }
-.sidebar button:nth-of-type(5):active:before {
-    content: ""; 
-    opacity: 100%;
-    transition: opacity 0s ease-in;
+#reset::after {
+    content : "Reset";
+}
+#policy::after {
+    content : "Policy";
 }

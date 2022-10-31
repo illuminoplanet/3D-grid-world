@@ -1,21 +1,13 @@
 export class Sidebar {
-	constructor(components) {
-        this.components = components
-        
-        this.sidebar = document.createElement("nav")
-        this.sidebar.className = "sidebar"
-        this.sidebar.setAttribute("open", false)
+	constructor(buttons) {
+        let $sidebar = $("<nav>", { "class" : "sidebar" })
+		$sidebar.append(buttons)
 
-        for (let comp of this.components) {
-			this.sidebar.appendChild(comp)
-		}
-        document.body.appendChild(this.sidebar)
         window.addEventListener('mousemove', this.mouse_move.bind(this))
-
-        return this.sidebar
+        return $sidebar
     }
     mouse_move(event) {
         event = event || window.event
-		this.sidebar.setAttribute("open", event.pageX <= 400)
+		$(".sidebar").attr("is_open", event.pageX <= 400)
 	}
 }
